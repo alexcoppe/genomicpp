@@ -9,12 +9,18 @@ class Vcf{
         std::string chromosome;
         int position;
 
+        Vcf();
         Vcf(std::string,
                 int);
         void show();
         void vcf_from_vcf_line(std::string);
 };
 
+
+Vcf::Vcf(){
+    chromosome = "";
+    position = 0;
+}
 
 Vcf::Vcf(std::string chr, int pos){
     chromosome = chr;
@@ -28,18 +34,32 @@ void Vcf::show(){
 
 
 void vcf_from_vcf_line(std::string l){
-    std::cout << "Running\n";
+    //std::cout << "Running\n";
     size_t pos = 0;
     std::string token;
     std::list<std::string> fields;
+    int i = 0;
 
-    while ((pos = l.find("|")) != std::string::npos){
+    Vcf v;
+
+    while ((pos = l.find("\t")) != std::string::npos){
         token = l.substr(0, pos);
+        //std::cout << token << "\n";
+
+        if (i == 0)
+            v.chromosome = token;
+        if (i == 1)
+            v.position = stoi(token);
+
         fields.push_back(token);
         l = l.substr(pos + 1, l.length());
+        i++;
     }
 
+    v.show();
+
     token = l.substr(pos + 1, l.length());
+    //std::cout << token << "\n";
     fields.push_back(token);
 }
 
@@ -78,20 +98,22 @@ int main(int argc, char *argv[]){
     std::ifstream file(argv[0]);
     std::string line;
 
+    Vcf v;
+
     if (file.is_open()) {
         while (getline(file, line)){
             if (line[0] != '#'){
                 if (line[0] != '#'){
                     vcf_from_vcf_line(line);
-                    std::cout << line << "\n";
+                    //std::cout << line << "\n";
                 }
             }
         }
         file.close();
     }
 
-    Vcf v("fdf", 22);
-    v.show();
+    //Vcf v("fdf", 22);
+    //v.show();
 
     return 0;
 }
