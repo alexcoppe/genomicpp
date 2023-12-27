@@ -58,7 +58,7 @@ int main(int argc, char *argv[]){
                         std::cout << "Error in this line:\n" << line << "\nthere are only " << n << " fileds\n";
                         return -1;
                 }
-                    v = vcf_from_vcf_line(line);
+                    v = Vcf(line);
                     v.show();
                 }
             }

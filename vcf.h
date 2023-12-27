@@ -17,11 +17,9 @@ class Vcf{
         std::string info;
 
         Vcf();
+        Vcf(std::string);
         Vcf(std::string,
                 int, std::string, std::string, std::string, float, std::string, std::string);
         void show();
-        Vcf vcf_from_vcf_line(std::string);
 };
 
-
-Vcf vcf_from_vcf_line(std::string);
