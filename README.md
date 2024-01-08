@@ -1,6 +1,14 @@
 # genomiC++ :dna:
 A bunch of C++ programs for working with bioinformatics files.
 
+# Download and Compilation :floppy_disk:
+
+```console
+>>> git clone https://github.com/alexcoppe/genomicpp.git
+>>> cd genomicpp
+>>> make
+```
+
 # Programs available :man_technologist:
 
 ## get_pass_variants
