@@ -3,6 +3,7 @@
 #include<getopt.h>
 #include<list>
 #include<algorithm>
+#include<map>
 
 
 class Vcf{
@@ -15,11 +16,14 @@ class Vcf{
         float quality;
         std::string filter;
         std::string info;
+        std::map<std::string, std::string> info_map;
 
         Vcf();
         Vcf(std::string);
         Vcf(std::string,
                 int, std::string, std::string, std::string, float, std::string, std::string);
         void show();
+    private:
+        void build_info_map();
 };
 

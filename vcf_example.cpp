@@ -59,7 +59,8 @@ int main(int argc, char *argv[]){
                         return -1;
                 }
                     v = Vcf(line);
-                    v.show();
+                    //std::cout << v.info_map["DP"] << "\n";
+                    //v.show();
                 }
             }
         }

@@ -54,6 +54,8 @@ Vcf::Vcf(std::string l){
 
     token = l.substr(pos + 1, l.length());
     fields.push_back(token);
+
+    build_info_map();
  
 }
 
@@ -79,5 +81,26 @@ void Vcf::show(){
     std::cout << "Quality: " << quality << "\n";
     std::cout << "Filter: " << filter << "\n";
     std::cout << "Info: " << info << "\n";
+}
+
+void Vcf::build_info_map(){
+    size_t pos = 0;
+    std::string token;
+    std::string key;
+    std::string value;
+
+    while ((pos = info.find(";")) != std::string::npos){
+        token = info.substr(0, pos);
+        key = token.substr(0, token.find('='));
+        value = token.substr(token.find('=') + 1, token.length());
+        info = info.substr(pos + 1, info.length());
+        info_map[key] = value;
+    }
+
+    token = info.substr(pos + 1, info.length());
+    key = token.substr(0, token.find('='));
+    value = token.substr(token.find('=') + 1, token.length());
+    info = info.substr(pos + 1, info.length());
+    info_map[key] = value;
 }
 
