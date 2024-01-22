@@ -59,8 +59,9 @@ int main(int argc, char *argv[]){
                         return -1;
                 }
                     v = Vcf(line);
-                    //std::cout << v.info_map["DP"] << "\n";
-                    //v.show();
+                    //std::cout << "The DP is: " <<  v.info_map["DP"] << "\n";
+                    //std::cout << "The ANN is: " <<  v.info_map["ANN"] << "\n";
+                    v.show();
                 }
             }
         }
