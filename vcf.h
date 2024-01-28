@@ -25,5 +25,6 @@ class Vcf{
         void show();
     private:
         void build_info_map();
+        void build_ann();
 };
 

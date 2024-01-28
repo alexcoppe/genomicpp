@@ -4,6 +4,7 @@
 #include<list>
 #include<algorithm>
 #include "vcf.h"
+#include "ann_variant.h"
 
 
 Vcf::Vcf(){
@@ -56,6 +57,7 @@ Vcf::Vcf(std::string l){
     fields.push_back(token);
 
     build_info_map();
+    build_ann();
  
 }
 
@@ -104,3 +106,18 @@ void Vcf::build_info_map(){
     info_map[key] = value;
 }
 
+void Vcf::build_ann(){
+    std::string all_annotated_transcripts = info_map["ANN"];
+    size_t pos = 0;
+    std::string token;
+
+    while ((pos = all_annotated_transcripts.find(",")) != std::string::npos){
+        token = all_annotated_transcripts.substr(0, pos);
+        Ann_variant variant = Ann_variant(token);
+        variant.print_variant_annotation();
+        all_annotated_transcripts = all_annotated_transcripts.substr(pos + 1, all_annotated_transcripts.length());
+    }
+
+    token = all_annotated_transcripts.substr(pos + 1, all_annotated_transcripts.length());
+ 
+}
