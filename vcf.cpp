@@ -4,7 +4,6 @@
 #include<list>
 #include<algorithm>
 #include "vcf.h"
-#include "ann_variant.h"
 
 
 Vcf::Vcf(){
@@ -114,7 +113,8 @@ void Vcf::build_ann(){
     while ((pos = all_annotated_transcripts.find(",")) != std::string::npos){
         token = all_annotated_transcripts.substr(0, pos);
         Ann_variant variant = Ann_variant(token);
-        variant.print_variant_annotation();
+        //variant.print_variant_annotation();
+        snpeff_annotation.push_back(variant);
         all_annotated_transcripts = all_annotated_transcripts.substr(pos + 1, all_annotated_transcripts.length());
     }
 

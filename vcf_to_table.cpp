@@ -4,7 +4,6 @@
 #include<list>
 #include<algorithm>
 #include "vcf_with_genotype_info.h"
-#include "ann_variant.h"
 
 
 int main(int argc, char *argv[]){
@@ -41,6 +40,7 @@ int main(int argc, char *argv[]){
 
     std::ifstream file(argv[0]);
     std::string line;
+    int number_of_snpeff_variants = 0;
 
     Vcf_with_genonotype v;
 
@@ -60,6 +60,14 @@ int main(int argc, char *argv[]){
                         return -1;
                 }
                     v = Vcf_with_genonotype(line);
+                    //std::cout << v.snpeff_annotation.size() << "\n";
+                    number_of_snpeff_variants = v.snpeff_annotation.size();
+                    for (Ann_variant x: v.snpeff_annotation)
+                        x.print_variant_annotation();
+                    //for (int i = 0; i < number_of_snpeff_variants; i++){
+                    //std::cout << v.snpeff_annotation[i];
+                    //}
+                    //std::cout << x << "\n";
                     //std::cout << "The ANN is: " <<  v.info_map["ANN"] << "\n";
                     //Ann_variant ann_var = Ann_variant();
                     //std::cout << ann_var.alternative_nucleotides << "\n";

@@ -4,6 +4,7 @@
 #include<list>
 #include<algorithm>
 #include<map>
+#include "ann_variant.h"
 
 
 class Vcf{
@@ -17,6 +18,7 @@ class Vcf{
         std::string filter;
         std::string info;
         std::map<std::string, std::string> info_map;
+        std::list<Ann_variant> snpeff_annotation;
 
         Vcf();
         Vcf(std::string);
@@ -27,4 +29,3 @@ class Vcf{
         void build_info_map();
         void build_ann();
 };
-
