@@ -23,4 +23,4 @@ vcf_with_genotype_example.o: vcf_with_genotype_example.cpp
 vcf_to_table.o: vcf_to_table.cpp
 	$(CC) -std=c++11 -c vcf_to_table.cpp
 clean:
-	rm -rf *.o vcf_example get_pass_variants vcf_with_genotype_example
+	rm -rf *.o vcf_example get_pass_variants vcf_with_genotype_example vcf_to_table
