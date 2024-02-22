@@ -77,50 +77,7 @@ int main(int argc, char *argv[]){
 
                     for (std::string field: wanted_fields){
 
-                        if (field.find(':') == std::string::npos){
-                            if (field == "chromosome"){
-                                for (int i = 0; i < number_of_snpeff_variants; i++){
-                                    transcripts_list[i] = transcripts_list[i] + v.chromosome + "\t";
-                                }
-                            }
-                            else if (field == "position") {
-                                for (int i = 0; i < number_of_snpeff_variants; i++){
-                                    transcripts_list[i] = transcripts_list[i] + std::to_string(v.position) + "\t";
-                                }
-                            }
-                            else if (field == "id") {
-                                for (int i = 0; i < number_of_snpeff_variants; i++){
-                                    transcripts_list[i] = transcripts_list[i] + v.id + "\t";
-                                }
-                            }
-                            else if (field == "reference") {
-                                for (int i = 0; i < number_of_snpeff_variants; i++){
-                                    transcripts_list[i] = transcripts_list[i] + v.reference + "\t";
-                                }
-                            }
-                            else if (field == "alternative") {
-                                for (int i = 0; i < number_of_snpeff_variants; i++){
-                                    transcripts_list[i] = transcripts_list[i] + v.alternative + "\t";
-                                }
-                            }
-                            else if (field == "quality") {
-                                for (int i = 0; i < number_of_snpeff_variants; i++){
-                                    transcripts_list[i] = transcripts_list[i] + std::to_string(v.quality) + "\t";
-                                }
-                            }
-                            else if (field == "filter") {
-                                for (int i = 0; i < number_of_snpeff_variants; i++){
-                                    transcripts_list[i] = transcripts_list[i] + v.filter + "\t";
-                                }
-                            }
-                            else if (field == "info") {
-                                for (int i = 0; i < number_of_snpeff_variants; i++){
-                                    transcripts_list[i] = transcripts_list[i] + v.info + "\t";
-                                }
-                            }
-
-                        }
-                        else {
+                        if (field.find(':') != std::string::npos){
                             int position_of_separator = field.find(":");
                             std::string wanted_subfield = field.substr(position_of_separator + 1, field.length());
                             
@@ -178,6 +135,58 @@ int main(int argc, char *argv[]){
                                 i++;
                             }
                         }
+                        else if (field.find(';') != std::string::npos){
+                            int position_of_separator = field.find(";");
+                            std::string wanted_subfield = field.substr(position_of_separator + 1, field.length());
+
+                            for (int i = 0; i < number_of_snpeff_variants; i++){
+                                transcripts_list[i] = transcripts_list[i] + v.info_map[wanted_subfield] + "\t";
+                            }
+                        }
+                        else if (field.find(':') == std::string::npos){
+                            if (field == "chromosome"){
+                                for (int i = 0; i < number_of_snpeff_variants; i++){
+                                    transcripts_list[i] = transcripts_list[i] + v.chromosome + "\t";
+                                }
+                            }
+                            else if (field == "position") {
+                                for (int i = 0; i < number_of_snpeff_variants; i++){
+                                    transcripts_list[i] = transcripts_list[i] + std::to_string(v.position) + "\t";
+                                }
+                            }
+                            else if (field == "id") {
+                                for (int i = 0; i < number_of_snpeff_variants; i++){
+                                    transcripts_list[i] = transcripts_list[i] + v.id + "\t";
+                                }
+                            }
+                            else if (field == "reference") {
+                                for (int i = 0; i < number_of_snpeff_variants; i++){
+                                    transcripts_list[i] = transcripts_list[i] + v.reference + "\t";
+                                }
+                            }
+                            else if (field == "alternative") {
+                                for (int i = 0; i < number_of_snpeff_variants; i++){
+                                    transcripts_list[i] = transcripts_list[i] + v.alternative + "\t";
+                                }
+                            }
+                            else if (field == "quality") {
+                                for (int i = 0; i < number_of_snpeff_variants; i++){
+                                    transcripts_list[i] = transcripts_list[i] + std::to_string(v.quality) + "\t";
+                                }
+                            }
+                            else if (field == "filter") {
+                                for (int i = 0; i < number_of_snpeff_variants; i++){
+                                    transcripts_list[i] = transcripts_list[i] + v.filter + "\t";
+                                }
+                            }
+                            else if (field == "info") {
+                                for (int i = 0; i < number_of_snpeff_variants; i++){
+                                    transcripts_list[i] = transcripts_list[i] + v.info + "\t";
+                                }
+                            }
+
+                        }
+
                     }
 
 
