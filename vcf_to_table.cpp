@@ -191,7 +191,7 @@ int main(int argc, char *argv[]){
 
 
                     for (int i = 0; i < number_of_snpeff_variants; i++){
-                        std::cout << transcripts_list[i] << "\n";
+                        //std::cout << transcripts_list[i] << "\n";
                     }
                 }
             }
