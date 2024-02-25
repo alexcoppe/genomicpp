@@ -98,8 +98,6 @@ void Vcf_with_genonotype::build_samples(){
 
     int j = 0;
     while (j < sample1_vector.size()){
-        //std::cout << format_vector[j] << "\t" << sample1_vector[j] << "\n";
-        //std::cout << format_vector[j] << "\t" << sample2_vector[j] << "\n\n";
         sample1_map[format_vector[j]] = sample1_vector[j];
 
         if (sample2 != ""){

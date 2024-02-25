@@ -10,8 +10,6 @@ class Vcf_with_genonotype: public Vcf{
         std::string format = "";
         std::string sample1 = "";
         std::string sample2 = "";
-        /*std::map<std::string, std::string> sample1_map;*/
-        /*std::map<std::string, std::string> sample2_map;*/
         std::map<std::string, std::string> sample1_map;
         std::map<std::string, std::string> sample2_map;
 

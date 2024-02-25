@@ -143,6 +143,16 @@ int main(int argc, char *argv[]){
                                 transcripts_list[i] = transcripts_list[i] + v.info_map[wanted_subfield] + "\t";
                             }
                         }
+                        else if (field.find('|') != std::string::npos){
+                            int position_of_separator = field.find("|");
+                            std::string wanted_subfield = field.substr(position_of_separator + 1, field.length());
+
+                            for (int i = 0; i < number_of_snpeff_variants; i++){
+                                transcripts_list[i] = transcripts_list[i] + v.sample1_map[wanted_subfield] + "\t";
+                                if (v.sample2_map.count(wanted_subfield) != 0)
+                                    transcripts_list[i] = transcripts_list[i] + v.sample2_map[wanted_subfield] + "\t";
+                            }
+                        }
                         else if (field.find(':') == std::string::npos){
                             if (field == "chromosome"){
                                 for (int i = 0; i < number_of_snpeff_variants; i++){
@@ -191,7 +201,7 @@ int main(int argc, char *argv[]){
 
 
                     for (int i = 0; i < number_of_snpeff_variants; i++){
-                        //std::cout << transcripts_list[i] << "\n";
+                        std::cout << transcripts_list[i] << "\n";
                     }
                 }
             }
