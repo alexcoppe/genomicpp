@@ -125,6 +125,8 @@ void Vcf::build_ann(){
 
 
         token = all_annotated_transcripts.substr(pos + 1, all_annotated_transcripts.length());
+        Ann_variant variant = Ann_variant(token);
+        snpeff_annotation.push_back(variant);
  
     }
 
